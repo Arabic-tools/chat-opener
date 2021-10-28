@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    ssr : false ,
+    ssr: false,
     title: 'nuxt-kickoff',
     htmlAttrs: {
       lang: 'en'
@@ -32,6 +32,8 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    // With options
+    ['@nuxtjs/vuetify', { /* module options */ }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

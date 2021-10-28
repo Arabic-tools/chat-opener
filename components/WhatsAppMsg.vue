@@ -1,30 +1,28 @@
 <template>
-<div>
 
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-text-field
+              solo-inverted
+              v-model="phone"
+              type="number"
+              label="Phone Number"
+              counter="14"
+              :rules="[(v) => !!v || 'Phone number is required']"
+              required
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col><v-btn @click="routeToWhatsApp">hello</v-btn></v-col>
+        </v-row>
+      </v-container>
 
-  <div class="card" style="width: 18rem">
-    <img
-      src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-      class="card-img-top"
-      alt="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-    />
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
-  <NuxtLink to="/test">Home page</NuxtLink>
-</div>
-  
 </template>
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-
   mounted() {
     this.$nextTick(() => {
       this.$nuxt.$loading.start();
@@ -32,8 +30,16 @@ export default Vue.extend({
     });
   },
   name: "WhatsAppMsg",
+  methods: {
+    routeToWhatsApp() {
+      window.location.href = `https://wa.me/${this.phone}`;
+    },
+  },
   data() {
-    return {};
+    return {
+      isActive: false,
+      phone: "",
+    };
   },
 });
 </script>
