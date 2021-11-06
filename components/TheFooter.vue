@@ -1,46 +1,22 @@
 <template>
-  <v-footer
-    dark
-    padless
-  >
-    <v-card
-      class="flex"
-      flat
-      tile
-    >
-      <v-card-title class="teal">
-        <strong class="subheading">Get connected with us on social networks!</strong>
+  <v-footer dark padless>
+    <v-row>
+      <v-col cols="12" style="text-align: center">
+        <!-- الموقع برعاية :
 
-        <v-spacer></v-spacer>
-
-        <v-btn
-          v-for="icon in icons"
-          :key="icon"
-          class="mx-4"
-          dark
-          icon
-        >
-          <v-icon size="24px">
-            {{ icon }}
-          </v-icon>
-        </v-btn>
-      </v-card-title>
-
-      <v-card-text class="py-2 white--text text-center">
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-      </v-card-text>
-    </v-card>
+          <a href="https://wasetshera.com?myad=53196"> وسيط شراء من الإنترنت</a>
+          <br /> -->
+        contact us :
+        <a href="mailto:nocontact@inboxeen.com">nocontact@inboxeen.com</a>
+      </v-col>
+      <v-col cols="12" class="text-center">© 2021 Copyright Nocantact </v-col>
+    </v-row>
   </v-footer>
 </template>
 <script>
-  export default {
-    data: () => ({
-      icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-linkedin',
-        'mdi-instagram',
-      ],
-    }),
-  }
+export default {
+  data: () => ({
+    icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
+  }),
+};
 </script>

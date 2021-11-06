@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TheHeader />
     <v-app>
+      <TheHeader />
       <v-main>
         <Nuxt />
       </v-main>
