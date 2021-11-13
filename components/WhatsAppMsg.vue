@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-row>
+  <v-container >
+    <v-row class="py-3">
       <v-col class="text-center">
         <p>Send a WhatsApp direct without adding to your contact list</p>
       </v-col>
@@ -8,21 +8,18 @@
     <v-row justify="center">
       <v-col cols="10" md="6">
         <v-text-field
-          solo-inverted
+          solo
+          class="inputPrice"
           v-model="phone"
           type="number"
           label="Phone Number"
-          counter="14"
-          :rules="[
-            (v) => !!v || 'Phone number is required',
-            (v) => !!v && v.length < 8 && 'Phone number is short',
-          ]"
+          :rules="[(v) => !!v || 'Phone number is required']"
           required
         ></v-text-field>
       </v-col>
       <v-col cols="10" class="text-center"
-        ><v-btn @click="routeToWhatsApp" color="#1DBEA5" class="white--text"
-          >Message now !
+        ><v-btn @click="routeToWhatsApp" color="#00E675" class="white--text"
+          >Message now
         </v-btn></v-col
       >
     </v-row>
@@ -30,17 +27,31 @@
       <v-col cols="10" class="text-center">
         <p>
           Just fill in the phone number you want to WhatsApp in international
-          form e.g. +1 650 555 7475
+          form e.g. +1 650 555 1234
+        </p>
+        <p>
+          Tip: Press enter to open Whatsapp. You may copy & paste the phone
+          number, the system will automatically delete unnecessary spaces,
+          parenthesizes, and dashes between numbers
         </p>
       </v-col>
+    </v-row>
+
+    <v-row class="grey--text text-center">
       <v-col cols="12">
         <v-divider></v-divider>
       </v-col>
-      <v-col cols="10" class="text-center">
-        Sometimes you want to sent a WhatsApp message without going to the
-        trouble of adding someone to your contacts. Or you don't want to bloat
-        your contacts list with everyone you ever have sent a WhatsApp message.
-        This service is for you.
+      <v-col>
+        Do you want to send WhatsApp without saving the number to your contact
+        list? How to send a message to an unsaved number in Whatsapp?
+        <br />
+        Use Chatopener. <br /><br />
+        Is Chatopener free?
+        <br />Chatopener is free forever.
+        <br />
+        <br />
+        Do you save any data?<br />
+        We save no data on our end.
       </v-col>
     </v-row>
   </v-container>
@@ -54,6 +65,18 @@ export default Vue.extend({
     }
     return +to.query.page < +from.query.page ? "slide-right" : "slide-left";
   },
+  watch: {
+    phone() {
+      let out = "";
+      for (let i of this.phone) {
+        console.log(i);
+        if (+i > 0 && +i < 9) {
+          out += i;
+        }
+      }
+      this.phone = out;
+    },
+  },
   mounted() {
     this.$nextTick(() => {
       this.$nuxt.$loading.start();
@@ -63,7 +86,7 @@ export default Vue.extend({
   name: "WhatsAppMsg",
   methods: {
     routeToWhatsApp() {
-      window.location.href = `https://wa.me/${this.phone}`;
+      window.open(`https://wa.me/${this.phone}`, "_blank");
     },
   },
   data() {
@@ -74,3 +97,14 @@ export default Vue.extend({
   },
 });
 </script>
+<style scoped>
+.inputPrice >>> input[type="number"] {
+  -moz-appearance: textfield;
+}
+.inputPrice >>> input::-webkit-outer-spin-button,
+.inputPrice >>> input::-webkit-inner-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+</style>
