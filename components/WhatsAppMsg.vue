@@ -11,9 +11,7 @@
           solo
           class="inputPrice"
           v-model="phone"
-          type="number"
           label="Phone Number"
-          :rules="[(v) => !!v || 'Phone number is required']"
           required
         ></v-text-field>
       </v-col>
@@ -69,8 +67,8 @@ export default Vue.extend({
     phone() {
       let out = "";
       for (let i of this.phone) {
-        console.log(i);
-        if (+i > 0 && +i < 9) {
+        if (+i >= 0 && +i <= 9 || i === "+") {
+          console.log(i);
           out += i;
         }
       }
